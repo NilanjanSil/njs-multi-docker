@@ -22,3 +22,15 @@ after_success:
   - docker push nilanjan/multi-nginx
   - docker push nilanjan/multi-server
   - docker push nilanjan/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'us-east-2'
+  app: 'multi-docker'
+  env: 'MultiDocker-env'
+  bucket_name: 'elasticbeanstalk:us-east-2:949309440024'
+  bucket_path: 'docker-multi'
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
